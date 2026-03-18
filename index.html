@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEEL UI | Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+        
+        :root {
+            --steel-accent: #376eb4; /* From Library.Accent */
+            --bg-dark: #0c0c0c;     /* From Library.Black */
+            --bg-charcoal: #141414; /* From Library.Charcoal */
+            --bg-border: #232323;   /* From Library.Gray-ish */
+            --text-main: #f0f0f0;   /* From Library.Text */
+            --text-dark: #8c8c8c;   /* From Library.TextDark */
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Steel Aesthetic: Sharp but slightly rounded, high contrast blue accents */
+        .code-block {
+            background-color: #050505;
+            border: 1px solid var(--bg-border);
+            border-radius: 4px; /* Steel UI uses subtler rounding */
+            font-family: 'Fira Code', monospace;
+            position: relative;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--bg-charcoal);
+            border: 1px solid var(--bg-border);
+            color: var(--text-dark);
+            padding: 4px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--steel-accent);
+            color: white;
+            background: rgba(55, 110, 180, 0.2);
+        }
+
+        .sidebar {
+            background-color: var(--bg-charcoal);
+            border-right: 1px solid var(--bg-border);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 10px 16px;
+            color: var(--text-dark);
+            border-radius: 4px;
+            transition: 0.2s;
+            margin-bottom: 2px;
+            font-size: 14px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(55, 110, 180, 0.15);
+            color: white;
+            border-left: 3px solid var(--steel-accent);
+        }
+
+        .section-header {
+            color: var(--steel-accent);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 14px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h2 {
+            border-left: 4px solid var(--steel-accent);
+            padding-left: 15px;
+        }
+
+        pre {
+            padding: 1.25rem;
+            overflow-x: auto;
+            color: #d1d1d1;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        /* Syntax Highlighting */
+        .keyword { color: #376eb4; font-weight: bold; } /* Using Steel Blue for keywords */
+        .string { color: #a5d6ff; }
+        .comment { color: #6272a4; font-style: italic; }
+        .function { color: #80cbc4; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--steel-accent); }
+
+        .steel-card {
+            background: var(--bg-charcoal);
+            border: 1px solid var(--bg-border);
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="flex">
+        <!-- Sidebar -->
+        <aside class="sidebar w-72 p-6 hidden md:block">
+            <div class="flex items-center gap-3 mb-10 pl-2">
+                <div class="w-10 h-10 bg-[#376eb4] rounded flex items-center justify-center shadow-[0_0_15px_rgba(55,110,180,0.4)]">
+                    <i class="fas fa-shield-alt text-white text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-xl tracking-tighter leading-none">STEEL<span class="text-[#376eb4]">UI</span></h1>
+                    <span class="text-[10px] text-gray-500 font-bold uppercase tracking-[2px]">Documentation</span>
+                </div>
+            </div>
+
+            <nav>
+                <p class="text-[10px] font-bold text-gray-600 uppercase tracking-[2px] mb-4 pl-2">Core Basics</p>
+                <a href="#booting" class="nav-link">Initialization</a>
+                <a href="#key-system" class="nav-link">Security System</a>
+                
+                <p class="text-[10px] font-bold text-gray-600 uppercase tracking-[2px] mt-8 mb-4 pl-2">Hierarchy</p>
+                <a href="#windows" class="nav-link">Window Management</a>
+                <a href="#sections" class="nav-link">Content Sections</a>
+                
+                <p class="text-[10px] font-bold text-gray-600 uppercase tracking-[2px] mt-8 mb-4 pl-2">Interface Elements</p>
+                <a href="#buttons" class="nav-link">Interaction</a>
+                <a href="#sliders" class="nav-link">Data Inputs</a>
+                <a href="#keybinds" class="nav-link">Utilities</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 max-w-5xl p-8 md:p-20">
+            
+            <!-- Intro -->
+            <div class="mb-16">
+                <span class="section-header">Getting Started</span>
+                <h1 class="text-5xl font-extrabold mb-6 tracking-tight">Introduction</h1>
+                <p class="text-lg text-gray-400 leading-relaxed">
+                    Welcome to the <span class="text-white font-semibold">Steel UI Library</span>. A refined, high-performance interface framework designed for seamless script integration.
+                </p>
+            </div>
+
+            <!-- Booting -->
+            <section id="booting" class="mb-24">
+                <h2 class="text-3xl font-bold mb-4">Booting the Library</h2>
+                <p class="text-gray-400 mb-6">Load the core framework into your environment using the GitHub raw link.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Script</button>
+                    <pre><code><span class="keyword">local</span> Library = <span class="function">loadstring</span>(game:<span class="function">HttpGet</span>(<span class="string">'https://raw.githubusercontent.com/sd1246846/builtformen/refs/heads/main/STEEL'</span>))()</code></pre>
+                </div>
+            </section>
+
+            <!-- Key System -->
+            <section id="key-system" class="mb-24">
+                <h2 class="text-3xl font-bold mb-4">Key System</h2>
+                <div class="steel-card mb-6">
+                    <p class="text-gray-300">The key system prevents unauthorized access. It creates a separate "SteelKeySystem" UI and pauses execution until the correct key is provided.</p>
+                </div>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Script</button>
+                    <pre><code>Library:<span class="function">InitKeySystem</span>({
+    Key = <span class="string">"STEEL-FREE"</span>, 
+    Link = <span class="string">"https://discord.gg/steel-community"</span>
+})</code></pre>
+                </div>
+            </section>
+
+            <!-- Windows -->
+            <section id="windows" class="mb-24">
+                <h2 class="text-3xl font-bold mb-4">Window Management</h2>
+                <p class="text-gray-400 mb-6">Create a new window instance and add tabs for categorized navigation.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Script</button>
+                    <pre><code><span class="keyword">local</span> Window = Library:<span class="function">CreateWindow</span>(<span class="string">"STEEL HUB"</span>)
+
+<span class="comment">-- Icons use Roblox Image IDs</span>
+<span class="keyword">local</span> MainTab = Window:<span class="function">AddTab</span>(<span class="string">"Main"</span>, <span class="string">"13837882830"</span>)</code></pre>
+                </div>
+            </section>
+
+            <!-- Elements -->
+            <section id="buttons" class="mb-24">
+                <h2 class="text-3xl font-bold mb-4">Interactions</h2>
+                <p class="text-gray-400 mb-6">All interactive elements must be placed inside a <span class="text-white">Section</span>.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Script</button>
+                    <pre><code><span class="keyword">local</span> Section = MainTab:<span class="function">AddSection</span>(<span class="string">"Combat Features"</span>)
+
+<span class="comment">-- Simple Button</span>
+Section:<span class="function">AddButton</span>(<span class="string">"Kill All"</span>, <span class="keyword">function</span>()
+    <span class="function">print</span>(<span class="string">"Action Triggered"</span>)
+<span class="keyword">end</span>)
+
+<span class="comment">-- Toggle Switch</span>
+Section:<span class="function">AddToggle</span>(<span class="string">"Auto Aim"</span>, <span class="keyword">false</span>, <span class="keyword">function</span>(bool)
+    <span class="function">print</span>(<span class="string">"State: "</span>, bool)
+<span class="keyword">end</span>)</code></pre>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="mt-32 pb-16 border-t border-[#232323] pt-10 flex justify-between items-center text-gray-600">
+                <div class="text-left">
+                    <p class="font-bold text-gray-400 uppercase tracking-widest text-xs">Steel UI Library</p>
+                    <p class="text-[10px]">REFINED DESIGN • SUPERIOR PERFORMANCE</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs">© 2024 SD PROJECTS</p>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        function copyCode(btn) {
+            const code = btn.nextElementSibling.innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = code;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const originalText = btn.innerText;
+            btn.innerText = 'COPIED';
+            btn.style.borderColor = '#50fa7b';
+            btn.style.color = '#50fa7b';
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.borderColor = '';
+                btn.style.color = '';
+            }, 2000);
+        }
+
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
