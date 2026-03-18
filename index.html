@@ -10,12 +10,12 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
         
         :root {
-            --steel-accent: #376eb4; /* From Library.Accent */
-            --bg-dark: #0c0c0c;     /* From Library.Black */
-            --bg-charcoal: #141414; /* From Library.Charcoal */
-            --bg-border: #232323;   /* From Library.Gray-ish */
-            --text-main: #f0f0f0;   /* From Library.Text */
-            --text-dark: #8c8c8c;   /* From Library.TextDark */
+            --steel-accent: #376eb4; 
+            --bg-dark: #0c0c0c;     
+            --bg-charcoal: #141414; 
+            --bg-border: #232323;   
+            --text-main: #f0f0f0;   
+            --text-dark: #8c8c8c;   
         }
 
         body {
@@ -25,11 +25,10 @@
             scroll-behavior: smooth;
         }
 
-        /* Steel Aesthetic: Sharp but slightly rounded, high contrast blue accents */
         .code-block {
             background-color: #050505;
             border: 1px solid var(--bg-border);
-            border-radius: 4px; /* Steel UI uses subtler rounding */
+            border-radius: 4px; 
             font-family: 'Fira Code', monospace;
             position: relative;
             margin: 1.5rem 0;
@@ -105,13 +104,11 @@
             line-height: 1.7;
         }
 
-        /* Syntax Highlighting */
-        .keyword { color: #376eb4; font-weight: bold; } /* Using Steel Blue for keywords */
+        .keyword { color: #376eb4; font-weight: bold; } 
         .string { color: #a5d6ff; }
         .comment { color: #6272a4; font-style: italic; }
         .function { color: #80cbc4; }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
         ::-webkit-scrollbar-thumb { background: var(--bg-border); border-radius: 10px; }
@@ -152,7 +149,8 @@
                 <p class="text-[10px] font-bold text-gray-600 uppercase tracking-[2px] mt-8 mb-4 pl-2">Interface Elements</p>
                 <a href="#buttons" class="nav-link">Interaction</a>
                 <a href="#sliders" class="nav-link">Data Inputs</a>
-                <a href="#keybinds" class="nav-link">Utilities</a>
+                <a href="#dropdowns" class="nav-link">Selection Menu</a>
+                <a href="#keybinds" class="nav-link">Utilities & Binds</a>
             </nav>
         </aside>
 
@@ -181,7 +179,7 @@
 
             <!-- Key System -->
             <section id="key-system" class="mb-24">
-                <h2 class="text-3xl font-bold mb-4">Key System</h2>
+                <h2 class="text-3xl font-bold mb-4">Key System not needed to work</h2>
                 <div class="steel-card mb-6">
                     <p class="text-gray-300">The key system prevents unauthorized access. It creates a separate "SteelKeySystem" UI and pauses execution until the correct key is provided.</p>
                 </div>
@@ -209,16 +207,25 @@
                 </div>
             </section>
 
-            <!-- Elements -->
-            <section id="buttons" class="mb-24">
-                <h2 class="text-3xl font-bold mb-4">Interactions</h2>
-                <p class="text-gray-400 mb-6">All interactive elements must be placed inside a <span class="text-white">Section</span>.</p>
+            <!-- Content Sections -->
+            <section id="sections" class="mb-24">
+                <h2 class="text-3xl font-bold mb-4">Content Sections</h2>
+                <p class="text-gray-400 mb-6">Sections organize your elements within tabs, providing a clean grouped look.</p>
                 
                 <div class="code-block">
                     <button class="copy-btn" onclick="copyCode(this)">Copy Script</button>
-                    <pre><code><span class="keyword">local</span> Section = MainTab:<span class="function">AddSection</span>(<span class="string">"Combat Features"</span>)
+                    <pre><code><span class="keyword">local</span> Section = MainTab:<span class="function">AddSection</span>(<span class="string">"Combat Features"</span>)</code></pre>
+                </div>
+            </section>
 
-<span class="comment">-- Simple Button</span>
+            <!-- Interaction -->
+            <section id="buttons" class="mb-24">
+                <h2 class="text-3xl font-bold mb-4">Interaction</h2>
+                <p class="text-gray-400 mb-6">Simple triggers and binary state switches.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Script</button>
+                    <pre><code><span class="comment">-- Simple Button</span>
 Section:<span class="function">AddButton</span>(<span class="string">"Kill All"</span>, <span class="keyword">function</span>()
     <span class="function">print</span>(<span class="string">"Action Triggered"</span>)
 <span class="keyword">end</span>)
@@ -227,6 +234,51 @@ Section:<span class="function">AddButton</span>(<span class="string">"Kill All"<
 Section:<span class="function">AddToggle</span>(<span class="string">"Auto Aim"</span>, <span class="keyword">false</span>, <span class="keyword">function</span>(bool)
     <span class="function">print</span>(<span class="string">"State: "</span>, bool)
 <span class="keyword">end</span>)</code></pre>
+                </div>
+            </section>
+
+            <!-- Sliders -->
+            <section id="sliders" class="mb-24">
+                <h2 class="text-3xl font-bold mb-4">Data Inputs (Sliders)</h2>
+                <p class="text-gray-400 mb-6">Sliders allow users to select numerical values within a specific range.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Script</button>
+                    <pre><code><span class="comment">-- AddSlider(name, min, max, default, callback)</span>
+Section:<span class="function">AddSlider</span>(<span class="string">"WalkSpeed"</span>, <span class="string">16</span>, <span class="string">200</span>, <span class="string">16</span>, <span class="keyword">function</span>(val)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = val
+<span class="keyword">end</span>)</code></pre>
+                </div>
+            </section>
+
+            <!-- Dropdowns -->
+            <section id="dropdowns" class="mb-24">
+                <h2 class="text-3xl font-bold mb-4">Selection Menu (Dropdowns)</h2>
+                <p class="text-gray-400 mb-6">Dropdowns provide a list of options for the user to choose from.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Script</button>
+                    <pre><code><span class="comment">-- AddDropdown(name, list, callback)</span>
+Section:<span class="function">AddDropdown</span>(<span class="string">"Select Weapon"</span>, {<span class="string">"Sword"</span>, <span class="string">"Bow"</span>, <span class="string">"Staff"</span>}, <span class="keyword">function</span>(selected)
+    <span class="function">print</span>(<span class="string">"Selected: "</span>, selected)
+<span class="keyword">end</span>)</code></pre>
+                </div>
+            </section>
+
+            <!-- Keybinds & Utilities -->
+            <section id="keybinds" class="mb-24">
+                <h2 class="text-3xl font-bold mb-4">Utilities & Binds</h2>
+                <p class="text-gray-400 mb-6">Add hotkeys and informational labels to your UI.</p>
+                
+                <div class="code-block">
+                    <button class="copy-btn" onclick="copyCode(this)">Copy Script</button>
+                    <pre><code><span class="comment">-- Keybind Bind</span>
+Section:<span class="function">AddKeybind</span>(<span class="string">"Toggle UI"</span>, Enum.KeyCode.RightControl, <span class="keyword">function</span>()
+    Library:<span class="function">Toggle</span>()
+<span class="keyword">end</span>)
+
+<span class="comment">-- Informational Label</span>
+Section:<span class="function">AddLabel</span>(<span class="string">"Welcome to the Steel Hub!"</span>)</code></pre>
                 </div>
             </section>
 
